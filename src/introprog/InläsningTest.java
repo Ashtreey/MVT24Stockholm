@@ -4,13 +4,13 @@ import org.junit.Test; // Importerar JUnit Test-annotering för att markera test
 import static org.junit.Assert.*; // Importerar assert-metoder för att göra påståenden i tester
 
 // Testklass för att testa funktionaliteten i Del2Räknare
-public class Del2InläsningTest {
+public class InläsningTest {
 
     // Testar att metoden addLine korrekt uppdaterar tecken- och radräknaren
     @Test
     public void testAddLineUpdatesCounts() {
         // Arrange: Skapa en instans av Del2Räknare för att hålla statistiken
-        Del2Räknare stats = new Del2Räknare();
+        Räknare stats = new Räknare();
 
         // Act: Lägg till en rad text
         stats.addLine("Hello World!");
@@ -24,7 +24,7 @@ public class Del2InläsningTest {
     @Test
     public void testMultipleLines() {
         // Arrange: Skapa en ny instans av Del2Räknare
-        Del2Räknare stats = new Del2Räknare();
+        Räknare stats = new Räknare();
 
         // Act: Lägg till flera rader text
         stats.addLine("First line.");
@@ -39,7 +39,7 @@ public class Del2InläsningTest {
     @Test
     public void testEmptyLine() {
         // Arrange: Skapa en ny instans av Del2Räknare
-        Del2Räknare stats = new Del2Räknare();
+        Räknare stats = new Räknare();
 
         // Act: Lägg till en tom rad
         stats.addLine("");
@@ -48,4 +48,20 @@ public class Del2InläsningTest {
         assertEquals(0, stats.getTotalChars()); // Förväntat antal tecken
         assertEquals(1, stats.getLineCount()); // Förväntat antal rader
     }
+
+    @Test
+    public void testWordCount() {
+        // Arrange
+        Räknare stats = new Räknare();
+
+        // Act
+        stats.addLine("First line.");
+        stats.addLine("Second line with more words.");
+
+        // Assert
+        assertEquals(7, stats.getWordCount()); // Förväntat antal ord
+        assertEquals("Second", stats.getLongestWord()); // Förväntat längsta ord
+    }
+
+
 }

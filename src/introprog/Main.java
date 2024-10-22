@@ -6,7 +6,7 @@ public class Main {
     public static void main(String[] args) {
         // Skapar ett nytt objekt av klassen Del2Inläsning
         // Detta objekt används för att läsa in text från användaren
-        Del2Inläsning reader = new Del2Inläsning();
+        Inläsning reader = new Inläsning();
 
         // Anropar metoden readInput() på reader-objektet
         // Denna metod ansvarar för att hantera inläsning av text och statistik
