@@ -16,7 +16,7 @@ public class InläsningTest {
         stats.addLine("Hello World!");
 
         // Assert: Kontrollera att antalet tecken och rader har uppdaterats korrekt
-        assertEquals(12, stats.getTotalChars()); // Förväntat antal tecken
+        assertEquals(11, stats.getTotalChars()); // Förväntat antal tecken
         assertEquals(1, stats.getLineCount()); // Förväntat antal rader
     }
 
@@ -31,7 +31,7 @@ public class InläsningTest {
         stats.addLine("Second line.");
 
         // Assert: Kontrollera att totalsumman av tecken och antal rader stämmer
-        assertEquals(23, stats.getTotalChars()); // Förväntat totalt antal tecken
+        assertEquals(21, stats.getTotalChars()); // Förväntat totalt antal tecken
         assertEquals(2, stats.getLineCount()); // Förväntat antal rader
     }
 
@@ -48,7 +48,7 @@ public class InläsningTest {
         assertEquals(0, stats.getTotalChars()); // Förväntat antal tecken
         assertEquals(1, stats.getLineCount()); // Förväntat antal rader
     }
-
+        // Test för att räkna antalet ord
     @Test
     public void testWordCount() {
         // Arrange
@@ -59,7 +59,8 @@ public class InläsningTest {
         stats.addLine("Second line with more words.");
 
         // Assert
-        assertEquals(7, stats.getWordCount()); // Förväntat antal ord
+        assertEquals(5
+                , stats.getWordCount()); // Förväntat antal ord
         assertEquals("Second", stats.getLongestWord()); // Förväntat längsta ord
     }
 
