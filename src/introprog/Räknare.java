@@ -1,4 +1,5 @@
-package introprog; // Specifierar paketet som klassen tillhör
+// Klass för att hantera statistik över inmatad text
+package introprog;
 
 // Klass för att räkna antalet tecken och rader
 public class Räknare {
@@ -23,7 +24,7 @@ public class Räknare {
             stopEntered = true;
             return;
         }
-
+        // Öka antalet rader
         lineCount++; // Öka antalet rader
 
         // Dela upp raden i ord
@@ -33,12 +34,12 @@ public class Räknare {
 
         // Kontrollera och uppdatera det längsta ordet
         for (String word : words) {
-            // Hoppa över ogiltiga ord
+            // Kontrollerar om ordet är giltigt för att inkluderas
             if (word.isEmpty() || word.matches("^[0-9]+$") || !word.matches("^[a-zA-ZåäöÅÄÖ]+$")) {
                 continue; // Hoppa över ogiltiga ord
             }
-
-            localWordCount++; // Räkna giltigt ord
+            // Räkna giltigt ord
+            localWordCount++;
 
             // Kolla om det längsta ordet ska uppdateras
             if (word.length() > currentLongestWord.length()) {

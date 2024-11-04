@@ -4,12 +4,10 @@ package introprog; // Specifierar paketet som klassen tillhör
 public class Main {
     // Huvudmetoden som körs när programmet startar
     public static void main(String[] args) {
-        // Skapar ett nytt objekt av klassen Del2Inläsning
-        // Detta objekt används för att läsa in text från användaren
+        // Skapar ett objekt av Inläsnings-klassen för att hantera användarinmatning
         Inläsning reader = new Inläsning();
 
-        // Anropar metoden readInput() på reader-objektet
-        // Denna metod ansvarar för att hantera inläsning av text och statistik
+        // Anropar metoden readInput(); för att starta inläsning av text
         reader.readInput();
     }
 }

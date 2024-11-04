@@ -1,4 +1,5 @@
-package introprog; // Specifierar paketet som klassen tillhör
+// Specifierar paketet som klassen tillhör
+package introprog;
 
 import java.util.Scanner; // Importerar Scanner-klassen för att läsa in data från användaren
 
@@ -14,7 +15,7 @@ public class Inläsning {
         // Informera användaren om hur man avslutar programmet
         System.out.println("Skriv in text, skriv 'stop' för att avsluta");
 
-        // Läs in rader tills användaren skriver "stop"
+        // Loop för att fortsätta läsa inmatning tills användaren skriver "stop"
         while (true) {
             input = scanner.nextLine(); // Läs in en rad från användaren
             stats.addLine(input); // Uppdatera statistiken med den nya raden
