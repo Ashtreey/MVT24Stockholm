@@ -1,20 +1,18 @@
-// Klass för att hantera statistik över inmatad text
-package introprog;
+package introprog; // Speci
 
-// Klass för att räkna antalet tecken och rader
-public class Räknare {
+public class Counter {
     private int totalChars; // Totala tecken utan mellanslag
     private int lineCount;  // Antal rader
     private int wordCount;  // Antal giltiga ord
-    private String longestWord; // Längsta ordet eller meddelande
+    private String longestWord; // Längsta  giltiga ordet
     private boolean stopEntered; // Flagga för att kolla om "stop" har skrivits
 
     // Konstruktor som initialiserar räknarna
-    public Räknare() {
+    public Counter() {
         this.totalChars = 0;
         this.lineCount = 0;
         this.wordCount = 0;
-        this.longestWord = "Inga giltiga ord"; // Sätter till standardmeddelande
+        this.longestWord = "Inga giltiga ord";
         this.stopEntered = false;
     }
 
@@ -31,35 +29,44 @@ public class Räknare {
         String[] words = line.trim().split("\\s+"); // Dela upp raden i ord
         int localWordCount = 0; // Räkna giltiga ord för denna rad
         String currentLongestWord = ""; // Temporär lagring för längsta ord
+        boolean allWordsEqual = true;
+        int firstWordLength = -1;
 
         // Kontrollera och uppdatera det längsta ordet
         for (String word : words) {
-            // Kontrollerar om ordet är giltigt för att inkluderas
-            if (word.isEmpty() || word.matches("^[0-9]+$") || !word.matches("^[a-zA-ZåäöÅÄÖ]+$")) {
-                continue; // Hoppa över ogiltiga ord
-            }
-            // Räkna giltigt ord
-            localWordCount++;
+            // Räkna alla tecken
+            totalChars += word.length();
 
-            // Kolla om det längsta ordet ska uppdateras
-            if (word.length() > currentLongestWord.length()) {
-                currentLongestWord = word; // Sätt aktuellt längsta ord
+            // Extrahera bokstäver från ordet
+            String onlyLetters = word.replaceAll("[^a-zA-ZåäöÅÄÖ]", "");
+
+            if (!onlyLetters.isEmpty()) {
+                localWordCount++;
+
+                if (firstWordLength == -1) {
+                    firstWordLength = onlyLetters.length();
+                } else if (onlyLetters.length() != firstWordLength) {
+                    allWordsEqual = false;
+                }
+
+                if (onlyLetters.length() > currentLongestWord.length()) {
+                    currentLongestWord = onlyLetters;
+                }
             }
         }
+        // Lägg till den lokala ordräkningen till den totala
+        wordCount += localWordCount;
 
-        // Räkna tecken utan mellanslag
-        totalChars += line.replace(" ", "").length();
-
-        wordCount += localWordCount; // Lägg till den lokala ordräkningen till den totala
-
-        // Om programmet har funnit giltiga ord, uppdatera det längsta ordet
         if (localWordCount > 0) {
-            longestWord = currentLongestWord; // Sätt längsta ordet till aktuellt längsta
+            if (allWordsEqual && localWordCount > 1) {
+                longestWord = "Alla ord är lika långa";
+            } else {
+                longestWord = currentLongestWord;
+            }
         }
-
-        // Om inga giltiga ord finns och man inte har registrerat något, sätt längsta ordet till "Inga giltiga ord"
+        // Sätt längsta ordet till meddelandet
         if (wordCount == 0) {
-            longestWord = "Inga giltiga ord"; // Sätt längsta ordet till meddelandet
+            longestWord = "Inga giltiga ord";
         }
     }
 

@@ -1,15 +1,14 @@
-// Specifierar paketet som klassen tillhör
-package introprog;
+package introprog; // Specifierar paketet som klassen tillhör
 
 import java.util.Scanner; // Importerar Scanner-klassen för att läsa in data från användaren
 
 // Klass för att läsa in text från användaren
-public class Inläsning {
+public class Reader {
 
-    // Metod för att läsa text från användaren och använda Del2Räknare för att hålla koll på rader och tecken
+    // Metod för att läsa text från användaren och använda Counter för att hålla koll på rader och tecken
     public void readInput() {
         Scanner scanner = new Scanner(System.in); // Skapar en scanner för att läsa in användarens input
-        Räknare stats = new Räknare(); // Skapar ett Del2Räknare-objekt för att spåra rader och tecken
+        Counter stats = new Counter(); // Skapar ett Counter-objekt för att spåra rader och tecken
         String input; // Variabel för att lagra användarens inmatning
 
         // Informera användaren om hur man avslutar programmet
