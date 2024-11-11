@@ -124,4 +124,22 @@ public class ReaderTest {
         assertEquals(3, stats.getWordCount());
         assertEquals("Stockholm", stats.getLongestWord());
     }
+
+    // test för att kontrollera om alla ord är lika långa
+    @Test
+    public void testAllWordsEqualLength() {
+        Counter stats = new Counter();
+
+        //Lägg till rader med ord som är lika långa
+        stats.addLine("Hej hoj haj");
+        assertEquals("Alla ord är lika långa", stats.getLongestWord());
+
+        //Lägg till flera rader med ord som är lika långa
+        stats.addLine("Mer ber ser");
+        assertEquals("Alla ord är lika långa", stats.getLongestWord());
+
+        // Lägg till en rad med ett ord som bryter mot regeln
+        stats.addLine("MVTStockholm");
+        assertEquals("MVTStockholm", stats.getLongestWord());
+    }
 }

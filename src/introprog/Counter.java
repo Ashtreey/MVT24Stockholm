@@ -6,31 +6,34 @@ public class Counter {
     private int wordCount;  // Antal giltiga ord
     private String longestWord; // Längsta  giltiga ordet
     private boolean stopEntered; // Flagga för att kolla om "stop" har skrivits
+    private boolean allWordsEqual; // Flagga för att kolla om alla ord är lika långa
+    private int firstWordLength; // Längd på det första ordet som jämförelse
+
 
     // Konstruktor som initialiserar räknarna
     public Counter() {
-        this.totalChars = 0;
-        this.lineCount = 0;
-        this.wordCount = 0;
+        this.totalChars = 0; // Initialisera total antal tecken till 0
+        this.lineCount = 0; // Initialisera total antal rader till 0
+        this.wordCount = 0; // Initialisera total antal giltiga ord till 0
         this.longestWord = "Inga giltiga ord";
         this.stopEntered = false;
+        this.allWordsEqual = true; // Startar ifall att alla ord är lika långa
+        this.firstWordLength = -1; // Initial längd på första ordet är satt till ett ogiltigt värde
     }
 
     // Metod för att lägga till tecken från en ny rad
     public void addLine(String line) {
         if (line.equalsIgnoreCase("stop")) {
-            stopEntered = true;
-            return;
+            stopEntered = true; // Sätt flaggan om "stop" har skrivits
+            return; // Avsluta metoden
         }
         // Öka antalet rader
-        lineCount++; // Öka antalet rader
+        lineCount++;
 
         // Dela upp raden i ord
         String[] words = line.trim().split("\\s+"); // Dela upp raden i ord
         int localWordCount = 0; // Räkna giltiga ord för denna rad
         String currentLongestWord = ""; // Temporär lagring för längsta ord
-        boolean allWordsEqual = true;
-        int firstWordLength = -1;
 
         // Kontrollera och uppdatera det längsta ordet
         for (String word : words) {
@@ -42,29 +45,31 @@ public class Counter {
 
             if (!onlyLetters.isEmpty()) {
                 localWordCount++;
+                wordCount++; // Öka antalet giltiga ord
 
+                // Kontrollera och uppdatera första ordets längd
                 if (firstWordLength == -1) {
                     firstWordLength = onlyLetters.length();
                 } else if (onlyLetters.length() != firstWordLength) {
-                    allWordsEqual = false;
+                    allWordsEqual = false; // Om längderna inte matchar sätts flaggan till false
                 }
-
+                // Kontrollera och uppdatera det längsta ordet
                 if (onlyLetters.length() > currentLongestWord.length()) {
                     currentLongestWord = onlyLetters;
                 }
             }
         }
-        // Lägg till den lokala ordräkningen till den totala
-        wordCount += localWordCount;
 
         if (localWordCount > 0) {
-            if (allWordsEqual && localWordCount > 1) {
+
+            // Kontrollera om alla ord är lika långa och uppdatera längsta ordet
+            if (allWordsEqual && wordCount > 1) {
                 longestWord = "Alla ord är lika långa";
             } else {
                 longestWord = currentLongestWord;
             }
         }
-        // Sätt längsta ordet till meddelandet
+        // Om inga giltiga ord finns, skrivs "Inga giltiga ord" ut.
         if (wordCount == 0) {
             longestWord = "Inga giltiga ord";
         }
