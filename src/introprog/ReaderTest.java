@@ -4,7 +4,7 @@ import org.junit.Test;
 import static org.junit.Assert.*;
 
 
-// Testklasss för att testa fuktionerna i Counter genom att ta ut informationen från Reader
+// Testklasss för att testa funktionerna i Counter genom att ta ut informationen från Reader
 public class ReaderTest {
 
     // Testar så att metoden addLine uppdaterar tecken o radräknaren korrekt
