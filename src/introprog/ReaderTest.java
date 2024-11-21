@@ -1,4 +1,4 @@
-package introprog;
+package introprog; // Specifierar paketet som klassen tillhör
 
 import org.junit.Test;
 import static org.junit.Assert.*;

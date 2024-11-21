@@ -1,4 +1,4 @@
-package introprog;
+package introprog; // Specifierar paketet som klassen tillhör
 
 public class Counter {
     // Räknar antalet rader som har lästs in
