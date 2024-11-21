@@ -119,15 +119,4 @@ public class Counter {
     public boolean isStopEntered() {
         return stopEntered;
     }
-
-    // Återställ alla räknare och flaggor
-    public void reset() {
-        lineCount = 0;
-        wordCount = 0;
-        totalChars = 0;
-        longestWord = "";
-        stopEntered = false;
-        allWordsEqual = true;
-        firstWordLength = -1;
-    }
 }
