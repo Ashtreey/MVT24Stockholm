@@ -27,8 +27,8 @@ public class ReaderTest {
         Counter stats = new Counter();
 
         // Lägg till flera rader text
-        stats.addLine("First line.");
-        stats.addLine("Second line.");
+        stats.addLine("Första raden");
+        stats.addLine("Andra raden");
 
         // Kontrollerar att totalsumman av tecken och antal rader stämmer
         assertEquals(21, stats.getTotalChars());
@@ -141,5 +141,18 @@ public class ReaderTest {
         // Lägg till en rad med ett ord som bryter mot regeln
         stats.addLine("MVTStockholm");
         assertEquals("MVTStockholm", stats.getLongestWord());
+    }
+    // Test för att räkna orden korrekt samt hitta längsta ordet
+    @Test
+    public void testCorrectWordCountAndLongestWord() {
+        Counter stats = new Counter();
+        stats.addLine("HEJSAN HOPPSAN FALLERALLERA!");
+        stats.addLine("Ojsan");
+        stats.addLine("Stop");
+
+        assertEquals(31, stats.getTotalChars());
+        assertEquals(2, stats.getLineCount());
+        assertEquals(4, stats.getWordCount());
+        assertEquals("FALLERALLERA", stats.getLongestWord());
     }
 }
